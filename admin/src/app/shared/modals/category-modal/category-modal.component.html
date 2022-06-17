@@ -1,0 +1,33 @@
+<!-- Category Modal -->
+<div class="modal fade" id="categoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalLabel">Add New Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" class="row">
+          <div class="col-md-6 mb-2">
+            <label for="validationCustom01" class="form-label">Code</label>
+            <input type="text" class="form-control" id="validationCustom01" disabled>
+          </div>
+          <div class="col-md-12 mb-2">
+            <label for="validationCustom01" class="form-label">Name</label>
+            <input type="text" class="form-control" id="validationCustom01" required>
+            <div class="valid-feedback">
+              Please, enter category name
+            </div>
+          </div>
+          <div class="col-md-12 mb-2">
+            <label for="validationCustom01" class="form-label">Image</label>
+            <input type="file" class="form-control" id="validationCustom01" required>
+          </div>
+          <div class="col-md-12 mt-3 d-grid mx-auto">
+            <button type="submit" class="btn btn-outline-primary ">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

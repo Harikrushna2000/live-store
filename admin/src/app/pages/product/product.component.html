@@ -1,0 +1,71 @@
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4 mb-4">Product</h1>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#productModal">
+          <i class="fas fa-add me-1"></i>
+          Add New
+        </button>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product (Code)</th>
+              <th>Price</th>
+              <th>Category (Code)</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let productItem of productList">
+              <td>
+                <img
+                  [src]="productItem.productImg"
+                  class="img-fluid img-thumbnail"
+                  alt="..."
+                />
+              </td>
+              <td>
+                {{ productItem.productName }}
+                <strong>({{ productItem.productCode }})</strong>
+              </td>
+              <td>&#8377; {{ productItem.productPrice }}</td>
+              <td>
+                {{ productItem.productName }}
+                <strong>({{ productItem.categoryCode }})</strong>
+              </td>
+              <td>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="flexSwitchCheckChecked"
+                    [checked]="productItem.productFlag"
+                  />
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-outline-secondary mx-1">
+                  <i class="fas fa-pencil me-1"></i>
+                  Update
+                </button>
+                <button class="btn btn-outline-danger mx-1">
+                  <i class="fas fa-trash me-1"></i>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-category-modal></app-category-modal>
+<app-product-modal></app-product-modal>

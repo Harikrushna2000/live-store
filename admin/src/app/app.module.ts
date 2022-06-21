@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +10,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryModalComponent } from './shared/modals/category-modal/category-modal.component';
 import { ProductModalComponent } from './shared/modals/product-modal/product-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -17,15 +24,24 @@ import { ProductModalComponent } from './shared/modals/product-modal/product-mod
     ProductComponent,
     DashboardComponent,
     CategoryModalComponent,
-    ProductModalComponent
+    ProductModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: { hasBackdrop: true, disableClose: true },
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

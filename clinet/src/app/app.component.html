@@ -20,27 +20,29 @@
     <p class="hedging">Category :</p>
     <div class="d-flex mt-1 overflow-auto">
       <div class="item m-2 mx-4">
-        <a>
+        <a (click)="allProduct()">
           <img src="./assets/all.png" width="100px" height="100px" alt="all" />
           <div class="text">
             <p class="mb-0" style="text-align: center">All Products</p>
           </div>
         </a>
       </div>
-      <div class="item m-2 mx-4">
-        <a>
+      <div class="item m-2 mx-4" *ngFor="let category of categoryData">
+        <a (click)="filterProduct(category.categoryCode)">
           <img
-            src="./assets/electric.png"
+            [src]="category.categoryImg"
             width="100px"
             height="100px"
             alt="electric"
           />
           <div class="text">
-            <p class="mb-0" style="text-align: center">Electrics</p>
+            <p class="mb-0" style="text-align: center">
+              {{ category.categoryName }}
+            </p>
           </div>
         </a>
       </div>
-      <div class="item m-2 mx-4">
+      <!--<div class="item m-2 mx-4">
         <a>
           <img
             src="./assets/fation.png"
@@ -65,7 +67,7 @@
             <p class="mb-0" style="text-align: center">Jwelarys</p>
           </div>
         </a>
-      </div>
+      </div> -->
     </div>
     <hr />
     <p class="hedging">Products :</p>
@@ -79,12 +81,12 @@
     <div
       class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center"
     >
-      <div class="col mb-5">
+      <div class="col mb-5" *ngFor="let product of productData">
         <div class="card h-100">
           <!-- Product image-->
           <img
             class="card-img-top"
-            src="https://images.pexels.com/photos/8479967/pexels-photo-8479967.jpeg?cs=srgb&dl=pexels-kira-schwarz-8479967.jpg&fm=jpg"
+            [src]="product.productImg"
             width="268px"
             height="180px"
             alt="..."
@@ -93,219 +95,11 @@
           <div class="card-body p-4">
             <div class="text-center">
               <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
+              <h5 class="fw-bolder">{{ product.productName }}</h5>
+
+              <p>{{ product.productDescription }}</p>
               <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcgVd1CTa8WQxSeddAr9maL0ODpkYEi5meww&usqp=CAU"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://amazingcarousel.com/wp-content/uploads/amazingcarousel/6/images/lightbox/night-in-the-city-lightbox.jpg"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFjH_gLWAcTm9FtlqCcJuE8juNHMoczXRwvG_M2bsMxh3EyXGDWj5-VydMqiWvJaKz6Y8&usqp=CAU"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://i.pinimg.com/originals/56/1d/3a/561d3a1b1b258cf3dba28f5578b3b7ac.jpg"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://images.unsplash.com/photo-1516368703560-076d597296a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG92ZWx5fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dmVydGljYWwlMjBsYW5kc2NhcGV8ZW58MHx8MHx8&w=1000&q=80"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center display-flex">
-              <button class="btn btn-outline-success m-2" href="#">Edit</button>
-              <button class="btn btn-outline-danger m-2" href="#">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img
-            class="card-img-top"
-            src="https://thumbs.dreamstime.com/b/vertical-shot-canal-venice-italy-boats-old-houses-193711930.jpg"
-            width="268px"
-            height="180px"
-            alt="..."
-          />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder">Fancy Product</h5>
-              <!-- Product price-->
-              $40.00 - $80.00
+              {{ product.productPrice | currency: "INR" }}
             </div>
           </div>
           <!-- Product actions-->

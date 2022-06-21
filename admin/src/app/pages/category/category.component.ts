@@ -1,53 +1,62 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryModalComponent } from 'src/app/shared/modals/category-modal/category-modal.component';
+import { CategoryService } from 'src/app/shared/services/category/category.service';
 
-interface Category {
-  categoryId: number;
-  categoryCode: string;
+export interface Category {
+  _id?: object;
+  categoryCode?: string;
   categoryName: string;
-  categoryImg: string;
-  categoryFlag: boolean;
+  categoryImg?: File;
+  categoryFlag?: boolean;
 }
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-  categoryList: Category[] = [
-    {
-      categoryId: 1,
-      categoryCode: 'C1',
-      categoryName: 'Breakfast',
-      categoryImg: '../../../assets/img/batata-poha.jpg',
-      categoryFlag: true
-    },
-    {
-      categoryId: 2,
-      categoryCode: 'C2',
-      categoryName: 'Lunch',
-      categoryImg: '../../../assets/img/upma.jpg',
-      categoryFlag: false
-    },
-    {
-      categoryId: 3,
-      categoryCode: 'C3',
-      categoryName: 'Dinner',
-      categoryImg: '../../../assets/img/upma.jpg',
-      categoryFlag: true
-    }
-  ]
-  constructor() { }
+  categoryList: Category[] = [];
+
+  constructor(public dialog: MatDialog, private catService: CategoryService) {}
 
   ngOnInit(): void {
+    this.catService.getAllCategory().subscribe((result: any) => {
+      this.categoryList = result.data;
+    });
   }
 
-  openModal() {
+  openCategoryDialog(catData: any): void {
+    const dialogRef = this.dialog.open(CategoryModalComponent, {
+      width: '400px',
+      data: catData === [] ? [] : catData,
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
   }
 
-  closeModal() {
-
+  changeFlag(id: any, event: any) {
+    if (event) {
+      this.catService
+        .changeFlag(id, { categoryFlag: false })
+        .subscribe((result: any) => {
+          this.ngOnInit();
+        });
+    } else {
+      this.catService
+        .changeFlag(id, { categoryFlag: true })
+        .subscribe((result: any) => {
+          this.ngOnInit();
+        });
+    }
   }
 
+  deleteCategory(id: any) {
+    this.catService.deleteCategory(id).subscribe((result: any) => {
+      this.ngOnInit();
+    });
+  }
 }

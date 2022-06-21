@@ -4,7 +4,7 @@
 
     <div class="card mb-4">
       <div class="card-header">
-        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#productModal">
+        <button class="btn btn-outline-dark" (click)="openProductDialog([])">
           <i class="fas fa-add me-1"></i>
           Add New
         </button>
@@ -14,9 +14,10 @@
           <thead>
             <tr>
               <th>Image</th>
-              <th>Product (Code)</th>
+              <th>(Code) Product</th>
+              <th>Description</th>
               <th>Price</th>
-              <th>Category (Code)</th>
+              <th>(Code) Category</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -31,30 +32,46 @@
                 />
               </td>
               <td>
-                {{ productItem.productName }}
                 <strong>({{ productItem.productCode }})</strong>
-              </td>
-              <td>&#8377; {{ productItem.productPrice }}</td>
-              <td>
                 {{ productItem.productName }}
-                <strong>({{ productItem.categoryCode }})</strong>
+              </td>
+              <td>{{ productItem.productDescription }}</td>
+              <td>&#8377;{{ productItem.productPrice | currency: "":"" }}</td>
+              <td>
+                <div *ngFor="let catItem of categoryList">
+                  <div
+                    *ngIf="catItem.categoryCode === productItem.categoryCode"
+                  >
+                    <strong>({{ productItem.categoryCode }})</strong>
+                    {{ catItem.categoryName }}
+                  </div>
+                </div>
               </td>
               <td>
                 <div class="form-check form-switch">
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    id="flexSwitchCheckChecked"
+                    [value]="productItem.productFlag"
                     [checked]="productItem.productFlag"
+                    (change)="
+                      changeFlag(productItem._id, productItem.productFlag)
+                    "
                   />
                 </div>
               </td>
               <td>
-                <button class="btn btn-outline-secondary mx-1">
+                <button
+                  class="btn btn-outline-secondary mx-1"
+                  (click)="openProductDialog(productItem)"
+                >
                   <i class="fas fa-pencil me-1"></i>
                   Update
                 </button>
-                <button class="btn btn-outline-danger mx-1">
+                <button
+                  class="btn btn-outline-danger mx-1"
+                  (click)="deleteProduct(productItem._id)"
+                >
                   <i class="fas fa-trash me-1"></i>
                   Delete
                 </button>
@@ -66,6 +83,3 @@
     </div>
   </div>
 </main>
-
-<app-category-modal></app-category-modal>
-<app-product-modal></app-product-modal>
